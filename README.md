@@ -36,47 +36,49 @@ Correlation coefficients are indicators of the strength of the linear relationsh
 #Developed By : Lokesh Krishnaa  M
 #Register No: 212220230030
 
-import numpy as np
 import math
-p=[[0,0.01,0.03,0.05,0.07,0.09],
-  [0.01,0.02,0.04,0.05,0.06,0.08],
-  [0.01,0.03,0.05,0.05,0.05,0.06],
-  [0.01,0.02,0.04,0.06,0.06,0.05]]
-px=np.sum(p,axis=0)
-px
-py=np.sum(p,axis=1)
-py
-x=[0,1,2,3,4,5]
-ex=np.inner(x,px)
-ex
-y=[0,1,2,3]
-ey=np.inner(y,py)
-ey
-ex2=np.inner(np.square(x),px)
-ex2
-ey2=np.inner(np.square(y),py)
-ey2
-vx=ex2-ex**2
-sx=math.sqrt(vx)
-vx
-vy=ey2-ey**2
-sy=math.sqrt(vy)
-vy
-exy=0
-for i in range(6):
-    for j in range(4):
-        exy=exy+x[i]*y[j]*p[j][i]
-exy
-cov=exy-ex*ey
-r=cov/(sx*sy)
+import numpy as np
+pdf=[[0,0.01,0.03,0.05,0.07,0.09],[0.01,0.02,0.04,0.05,0.06,0.08],[0.01,0.03,0.05,0.05,0.05,0.06],[0.01,0.02,0.04,0.06,0.06,0.05]]
 
+p_x=np.sum(pdf,axis=0)
+p_y=np.sum(pdf,axis=1)
+
+x=[0,1,2,3,4,5]
+y=[0,1,2,3]
+E_x=np.inner(x,p_x)
+E_y=np.inner(y,p_y)
+
+E_x_2=np.inner(np.square(x),p_x)
+E_y_2=np.inner(np.square(y),p_y)
+
+variance_x=E_x_2-E_x**2
+variance_y=E_y_2-E_y**2
+sd_x=math.sqrt(variance_x)
+sd_y=math.sqrt(variance_y)
+
+E_x_y=0
+for i in range(4):
+    for j in range(6):
+        E_x_y=E_x_y+x[j]*y[i]*pdf[i][j]
+        
+Covariance=E_x_y-(E_x*E_y)
+Covariance_coeff=Covariance/(sd_x*sd_y)
+
+import pandas as pd
+pdf_df=pd.DataFrame(pdf)
+display(pdf_df)
+print("Variance of X:\t\t\t\t",variance_x)
+print("Variance of Y:\t\t\t\t",variance_y)
+print("Standard deviation of X:\t\t",sd_x)
+print("Standard deviation of Y:\t\t",sd_y)
+print("Covariance:\t\t\t\t",Covariance.round(4))
+print("Covariance Coefficient of Corelation:\t",Covariance_coeff.round(4))
 ```
 
 
 # Output : 
 
-![Screenshot (2)](https://user-images.githubusercontent.com/78194419/168961787-ce2039db-9bac-4ea5-a4ad-50a07cadd09e.png)
-![Screenshot (3)](https://user-images.githubusercontent.com/78194419/168961794-a2b872ee-a502-41c3-8b64-c41a6309c1d5.png)
+![Screenshot (4)](https://user-images.githubusercontent.com/75234646/168963142-5f052d6a-6d58-4daf-b3ab-9621a3385e18.png)
 
 
 # Result :
