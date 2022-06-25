@@ -1,5 +1,5 @@
-## EXP. NO: 03
-## DATE :
+### EXP. NO: 03
+### DATE : 27.04.2022
 # <p align = "center"> Marginal distributions and correation coefficient </p>
 ## Aim : 
 To find marginal distributions and correation coefficient of joint probability mass funcition of two dimensional random variables
